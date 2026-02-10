@@ -8,12 +8,73 @@
 <style>
     body {
         background-color: #f9f7f2;
-        font-family: 'Times New Roman', Times, serif;
-        color: #4a4a4a;
-        text-align: center;
-        list-style-position: inside;
-        margin: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+        color: #333;
+        max-width: 600px;
+        margin: 60px auto;
         padding: 20px;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
+        color: #111;
+    }
+
+    h2,
+    h3 {
+        color: #444;
+        margin-top: 2rem;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    table {
+        width: 100%;
+        text-align: center;
+        border-radius: 4px;
+        margin: 10px;
+        column-gap: 5px;
+    }
+
+    td {
+        background-color: #0066cc;
+    }
+
+    .row {
+        display: flex;
+        gap: 5px;
+    }
+
+    .column {
+        flex: 1;
+        padding: 10px;
+        background-color: #0066cc;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    .column:hover {
+        background-color: lightblue;
     }
 </style>
 
@@ -26,16 +87,19 @@
         <li>Gusti Panji Widodo (2407113145)</li>
         <li>Azwa Zahira (2407126204)</li>
     </ul>
-    <h3>
-        Tugas 1 : </br>
-        <a href="aktivitas/undangan_html.html">Undangan</a></br>
-        <a href="aktivitas/tugas_html.html">Tugas</a></br>
-    </h3>
-
-    <h3>
-        Tugas 2 : <br>
-        <a href="aktivitas/tugas_css.html">Tugas CSS</a>
-    </h3>
+    <div>
+        <h3>Tugas 1 :</h3>
+        <div class="row">
+            <a class="column" href="aktivitas/undangan_html.html">Undangan</a>
+            <a class="column" href="aktivitas/tugas_html.html">Tugas</a>
+        </div>
+    </div>
+    <div>
+        <h3>Tugas 2 :</h3>
+        <div class="row">
+            <a class="column" href="aktivitas/tugas_css.html">Tugas CSS</a>
+        </div>
+    </div>
 </body>
 
 </html>
