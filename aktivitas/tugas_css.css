@@ -1,0 +1,75 @@
+body {
+    font-size: 20px;
+    margin: 20px;
+}
+
+@media (min-width: 600px) {
+    body {
+        margin: 40px;
+    }
+}
+
+@media (min-width: 900px) {
+    body {
+        margin: 50px 10%;
+    }
+}
+
+    h3 {
+        background-color: aqua;
+        display: inline;
+        text-align: center;
+    }
+
+    h4 {
+        background-color: blue;
+        color: white;
+        display: inline;
+        text-align: center;
+    }
+
+    #firstParagraph {
+        border: 2px solid maroon;
+    }
+
+    #linkSumber:hover {
+        color: red;
+    }
+
+    li {
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        font-weight: bold;
+        color: red;
+    }
+
+    #judul {
+        text-align: center;
+    }
+
+    #textHijau {
+        background-color: lime;
+    }
+
+    #textKuning {
+        background-color: yellow;
+    }
+
+    #textBiru {
+        color: blue;
+    }
+
+    #underlineItalic {
+        font-style: italic;
+        text-decoration: underline;
+    }
+
+    #link {
+        font-weight: bold;
+    }
