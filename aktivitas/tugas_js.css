@@ -1,0 +1,70 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    margin: 20px;
+}
+
+@media (min-width: 600px) {
+    body {
+        margin: 40px;
+    }
+}
+
+@media (min-width: 900px) {
+    body {
+        margin: 50px 10%;
+    }
+}
+
+    h4 {
+        background-color: blue;
+        color: white;
+        display: inline;
+        text-align: center;
+    }
+
+    #firstParagraph {
+        border: 2px solid maroon;
+    }
+
+    #linkSumber:hover {
+        color: red;
+    }
+
+
+    th,
+    td {
+        padding: 5px;
+        font-weight: bold;
+        color: red;
+    }
+
+    #judul {
+        color: blueviolet;
+        text-align: center;
+    }
+
+    #judul h3 {
+        margin: 10px 0;
+    }
+
+    #textHijau {
+        background-color: lime;
+    }
+
+    #textMerah {
+        background-color: red;
+        font-weight: bold;
+    }
+
+    #textUngu {
+        background-color: blueviolet;
+        font-weight: bold;
+    }
+
+    #textBiru {
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+    }
+
