@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.konten.update') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 text-sm">
+    <form action="{{ route('settings.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col gap-4 text-sm">
         @csrf
         <div>
             <label class="mb-1.5 block font-bold text-slate-700">Nama Mempelai Pria</label>
@@ -36,8 +36,27 @@
 
         <div>
             <label class="mb-1.5 block font-bold text-slate-700">Foto Mempelai Pria</label>
-            <input type="file" name="foto_pria" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <p class="mt-1 text-xs text-slate-500">Saat ini: {{ $settings['foto_pria'] ?? 'Belum ada' }}</p>
+            <div class="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-sm h-64 w-48 mt-2 border border-slate-200">
+                @if(!empty($settings['foto_pria']))
+                    <img src="{{ asset($settings['foto_pria']) }}" id="preview_foto_pria" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_pria" class="hidden flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @else
+                    <img src="" id="preview_foto_pria" class="hidden h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_pria" class="flex flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @endif
+                <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
+                    <label for="foto_pria_input" class="cursor-pointer h-10 w-10 rounded-full bg-white text-slate-700 hover:text-blue-500 transition-colors shadow-sm flex items-center justify-center" title="Ubah Foto">
+                        <i class="fa-solid fa-pen"></i>
+                    </label>
+                    <input type="file" id="foto_pria_input" name="foto_pria" accept="image/*" class="hidden" onchange="previewImage(this, 'preview_foto_pria', 'placeholder_foto_pria')" />
+                </div>
+            </div>
         </div>
 
         <hr class="my-2 border-slate-100">
@@ -56,16 +75,54 @@
 
         <div>
             <label class="mb-1.5 block font-bold text-slate-700">Foto Mempelai Wanita</label>
-            <input type="file" name="foto_wanita" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <p class="mt-1 text-xs text-slate-500">Saat ini: {{ $settings['foto_wanita'] ?? 'Belum ada' }}</p>
+            <div class="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-sm h-64 w-48 mt-2 border border-slate-200">
+                @if(!empty($settings['foto_wanita']))
+                    <img src="{{ asset($settings['foto_wanita']) }}" id="preview_foto_wanita" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_wanita" class="hidden flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @else
+                    <img src="" id="preview_foto_wanita" class="hidden h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_wanita" class="flex flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @endif
+                <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
+                    <label for="foto_wanita_input" class="cursor-pointer h-10 w-10 rounded-full bg-white text-slate-700 hover:text-blue-500 transition-colors shadow-sm flex items-center justify-center" title="Ubah Foto">
+                        <i class="fa-solid fa-pen"></i>
+                    </label>
+                    <input type="file" id="foto_wanita_input" name="foto_wanita" accept="image/*" class="hidden" onchange="previewImage(this, 'preview_foto_wanita', 'placeholder_foto_wanita')" />
+                </div>
+            </div>
         </div>
 
         <hr class="my-2 border-slate-100">
 
         <div>
             <label class="mb-1.5 block font-bold text-slate-700">Foto Cover / Latar Belakang</label>
-            <input type="file" name="foto_cover" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
-            <p class="mt-1 text-xs text-slate-500">Saat ini: {{ $settings['foto_cover'] ?? 'Belum ada' }}</p>
+            <div class="group relative overflow-hidden rounded-2xl bg-slate-100 shadow-sm h-64 w-full mt-2 border border-slate-200">
+                @if(!empty($settings['foto_cover']))
+                    <img src="{{ asset($settings['foto_cover']) }}" id="preview_foto_cover" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_cover" class="hidden flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @else
+                    <img src="" id="preview_foto_cover" class="hidden h-full w-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div id="placeholder_foto_cover" class="flex flex-col items-center justify-center h-full w-full text-slate-400 bg-slate-50 gap-2">
+                        <i class="fa-regular fa-image text-3xl"></i>
+                        <span class="text-xs font-medium">Pilih Foto</span>
+                    </div>
+                @endif
+                <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center">
+                    <label for="foto_cover_input" class="cursor-pointer h-10 w-10 rounded-full bg-white text-slate-700 hover:text-blue-500 transition-colors shadow-sm flex items-center justify-center" title="Ubah Foto">
+                        <i class="fa-solid fa-pen"></i>
+                    </label>
+                    <input type="file" id="foto_cover_input" name="foto_cover" accept="image/*" class="hidden" onchange="previewImage(this, 'preview_foto_cover', 'placeholder_foto_cover')" />
+                </div>
+            </div>
         </div>
 
         <div>
@@ -145,3 +202,26 @@
     </form>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function previewImage(input, previewId, placeholderId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var preview = document.getElementById(previewId);
+                preview.src = e.target.result;
+                preview.classList.remove('hidden');
+                
+                if (placeholderId) {
+                    var placeholder = document.getElementById(placeholderId);
+                    if (placeholder) {
+                        placeholder.classList.add('hidden');
+                    }
+                }
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+@endpush

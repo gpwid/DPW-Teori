@@ -18,7 +18,7 @@
 
 <div class="mb-8 rounded-2xl bg-white p-6 shadow-sm border border-slate-200">
     <h3 class="mb-4 text-lg font-bold text-slate-800">Unggah Foto Baru</h3>
-    <form action="{{ route('admin.galeri.upload') }}" method="POST" enctype="multipart/form-data" class="flex flex-col sm:flex-row items-end gap-4">
+    <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" class="flex flex-col sm:flex-row items-end gap-4">
         @csrf
         <div class="flex-1 w-full">
             <label class="mb-1.5 block font-bold text-slate-700 text-sm">Pilih Foto</label>
@@ -50,16 +50,18 @@
         <img src="{{ asset($gallery->image_path) }}" alt="Gallery Image" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110">
         <div class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center gap-3">
             
-            <form action="{{ route('admin.galeri.update', $gallery->id) }}" method="POST" enctype="multipart/form-data" class="m-0" id="form-edit-{{ $gallery->id }}">
+            <form action="{{ route('galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data" class="m-0" id="form-edit-{{ $gallery->id }}">
                 @csrf
+                @method('PUT')
                 <label for="edit-{{ $gallery->id }}" class="cursor-pointer h-10 w-10 rounded-full bg-white text-slate-700 hover:text-blue-500 transition-colors shadow-sm flex items-center justify-center" title="Ubah Foto">
                     <i class="fa-solid fa-pen"></i>
                 </label>
                 <input type="file" id="edit-{{ $gallery->id }}" name="foto" accept="image/*" class="hidden" onchange="document.getElementById('form-edit-{{ $gallery->id }}').submit();" />
             </form>
 
-            <form action="{{ route('admin.galeri.delete', $gallery->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus foto ini?');" class="m-0">
+            <form action="{{ route('galleries.destroy', $gallery->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus foto ini?');" class="m-0">
                 @csrf
+                @method('DELETE')
                 <button type="submit" class="h-10 w-10 rounded-full bg-white text-slate-700 hover:text-red-500 transition-colors shadow-sm flex items-center justify-center" title="Hapus Foto">
                     <i class="fa-solid fa-trash"></i>
                 </button>

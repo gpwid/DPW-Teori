@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Setting;
+use App\Models\Gallery;
 
 class InvitationController extends Controller
 {
     public function index(Request $request)
     {
-        $settings = \Illuminate\Support\Facades\DB::table('settings')->pluck('value', 'key')->toArray();
-        $galleries = \Illuminate\Support\Facades\DB::table('galleries')->orderBy('id', 'asc')->get();
+        $settings = Setting::pluck('value', 'key')->toArray();
+        $galleries = Gallery::orderBy('id', 'asc')->get();
 
         $judul = "The Wedding Of";
         $nama_tamu = "[Nama Tamu]";

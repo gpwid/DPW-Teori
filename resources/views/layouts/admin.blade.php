@@ -84,18 +84,18 @@
                 <i class="fa-solid fa-table-cells-large w-5 text-center"></i>
                 Dashboard
             </a>
-            <a href="{{ route('admin.konten') }}"
-                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('admin.konten') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
+            <a href="{{ route('settings.index') }}"
+                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('settings.*') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
                 <i class="fa-solid fa-pen-to-square w-5 text-center"></i>
                 Edit Konten
             </a>
-            <a href="{{ route('admin.tamu') }}"
-                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('admin.tamu') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
+            <a href="{{ route('guests.index') }}"
+                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('guests.*') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
                 <i class="fa-solid fa-user-group w-5 text-center"></i>
                 Manajemen Tamu
             </a>
-            <a href="{{ route('admin.galeri') }}"
-                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('admin.galeri') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
+            <a href="{{ route('galleries.index') }}"
+                class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold {{ request()->routeIs('galleries.*') ? 'bg-[#d5a995] text-neutral-900 shadow-sm' : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700' }} transition-colors">
                 <i class="fa-regular fa-image w-5 text-center"></i>
                 Galeri
             </a>

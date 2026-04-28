@@ -94,11 +94,10 @@
                                     class="text-slate-400 hover:text-blue-500 transition-colors">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
-                                <form action="{{ route('admin.dashboard.action') }}" method="POST" class="inline"
+                                <form action="{{ route('guests.destroy', $guest->id) }}" method="POST" class="inline"
                                     onsubmit="return confirm('Apakah Anda yakin ingin menghapus tamu ini?');">
                                     @csrf
-                                    <input type="hidden" name="action" value="delete">
-                                    <input type="hidden" name="id" value="{{ $guest->id }}">
+                                    @method('DELETE')
                                     <button type="submit" class="text-slate-400 hover:text-red-500 transition-colors">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
@@ -124,9 +123,8 @@
             <h3 class="text-lg font-bold text-slate-800">Tambah Tamu</h3>
             <button onclick="closeAddModal()" class="text-slate-400 hover:text-slate-600 transition-colors"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form action="{{ route('admin.dashboard.action') }}" method="POST" class="flex flex-col gap-4">
+        <form action="{{ route('guests.store') }}" method="POST" class="flex flex-col gap-4">
             @csrf
-            <input type="hidden" name="action" value="add">
             
             <div>
                 <label class="mb-1.5 block text-xs font-bold text-slate-700">Nama</label>
@@ -173,10 +171,9 @@
             <h3 class="text-lg font-bold text-slate-800">Edit Tamu</h3>
             <button onclick="closeEditModal()" class="text-slate-400 hover:text-slate-600 transition-colors"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <form action="{{ route('admin.dashboard.action') }}" method="POST" class="flex flex-col gap-4">
+        <form action="" method="POST" class="flex flex-col gap-4" id="editForm">
             @csrf
-            <input type="hidden" name="action" value="edit">
-            <input type="hidden" name="id" id="edit_id" value="">
+            @method('PUT')
 
             <div>
                 <label class="mb-1.5 block text-xs font-bold text-slate-700">Nama</label>
@@ -257,7 +254,9 @@
     }
 
     function openEditModal(id, nama, status, plusone, link) {
-        document.getElementById('edit_id').value = id;
+        const editForm = document.getElementById('editForm');
+        editForm.action = `/dashboard/guests/${id}`;
+        
         document.getElementById('edit_nama').value = nama;
         document.getElementById('edit_status_hadir').value = status;
         document.getElementById('edit_plusone').value = plusone;
