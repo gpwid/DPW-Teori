@@ -24,7 +24,6 @@ class SettingController extends Controller
             );
         }
 
-        // Handle file uploads
         $files = ['foto_pria', 'foto_wanita', 'foto_cover'];
         foreach ($files as $fileKey) {
             if ($request->hasFile($fileKey)) {

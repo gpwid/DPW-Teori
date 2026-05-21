@@ -82,23 +82,23 @@
                 </thead>
                 <tbody class="text-slate-700 font-medium">
                     @foreach ($recent_guests as $guest)
-                                    <?php
-                        $initials = strtoupper(substr($guest->nama, 0, 2));
-                        $colorClass = 'bg-slate-100 text-slate-700';
+                        @php
+                            $initials = strtoupper(substr($guest->nama, 0, 2));
+                            $colorClass = 'bg-slate-100 text-slate-700';
 
-                        $statusClass = 'bg-slate-100 text-slate-600';
-                        $statusText = 'PENDING';
-                        if ($guest->status_hadir === 'HADIR') {
-                            $statusClass = 'bg-emerald-100 text-emerald-600';
-                            $statusText = 'HADIR';
-                        } elseif ($guest->status_hadir === 'TIDAK') {
-                            $statusClass = 'bg-rose-100 text-rose-600';
-                            $statusText = 'TIDAK';
-                        } elseif ($guest->status_hadir === 'PENDING') {
-                            $statusClass = 'bg-amber-100 text-amber-600';
+                            $statusClass = 'bg-slate-100 text-slate-600';
                             $statusText = 'PENDING';
-                        }
-                                        ?>
+                            if ($guest->status_hadir === 'HADIR') {
+                                $statusClass = 'bg-emerald-100 text-emerald-600';
+                                $statusText = 'HADIR';
+                            } elseif ($guest->status_hadir === 'TIDAK') {
+                                $statusClass = 'bg-rose-100 text-rose-600';
+                                $statusText = 'TIDAK';
+                            } elseif ($guest->status_hadir === 'PENDING') {
+                                $statusClass = 'bg-amber-100 text-amber-600';
+                                $statusText = 'PENDING';
+                            }
+                        @endphp
                                     <tr class="border-b border-slate-50 last:border-0 hover:bg-slate-50/50 transition-colors">
                                         <td class="py-4 pl-2">
                                             <div class="flex items-center gap-3">
