@@ -15,10 +15,10 @@
                 <h3 class="text-lg font-bold text-slate-800">Daftar Tamu ({{ $guests->count() }})</h3>
             </div>
             <div class="flex items-center gap-2">
-                <button
-                    class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50">
-                    Export CSV
-                </button>
+                <a href="{{ route('guests.export') }}"
+                    class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-csv text-[#dcb8a6]"></i> Export CSV
+                </a>
                 <button type="button" onclick="openAddModal()"
                     class="rounded-xl border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-bold text-[#c79782] hover:bg-primary/20 transition-colors">
                     Tambah Tamu

@@ -286,10 +286,19 @@
                 </div>
 
                 <form id="guestbook-form" class="grid gap-5">
+                    @csrf
+                    @if($guest)
+                        <input type="hidden" name="guest_id" value="{{ $guest->id }}">
+                    @endif
                     <div>
                         <label for="nama" class="mb-2 block text-sm font-bold text-gray-700">Nama Lengkap</label>
-                        <input type="text" id="nama" name="nama" required placeholder="Masukkan nama anda"
-                            class="w-full rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white" />
+                        @if($guest)
+                            <input type="text" id="nama" name="nama" value="{{ $guest->nama }}" readonly required
+                                class="w-full rounded-2xl border border-gray-200 bg-gray-100 p-3 outline-none cursor-not-allowed text-gray-500 font-semibold" />
+                        @else
+                            <input type="text" id="nama" name="nama" required placeholder="Masukkan nama anda"
+                                class="w-full rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white" />
+                        @endif
                     </div>
 
                     <div>
@@ -297,9 +306,9 @@
                         <div class="relative">
                             <select id="hadir" name="hadir"
                                 class="w-full appearance-none rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white">
-                                <option value="Hadir">Hadir</option>
-                                <option value="Tidak Hadir">Tidak Hadir</option>
-                                <option value="Masih Ragu">Masih Ragu</option>
+                                <option value="HADIR" {{ $guest && $guest->status_hadir === 'HADIR' ? 'selected' : '' }}>Hadir</option>
+                                <option value="TIDAK" {{ $guest && $guest->status_hadir === 'TIDAK' ? 'selected' : '' }}>Tidak Hadir</option>
+                                <option value="PENDING" {{ $guest && $guest->status_hadir === 'PENDING' ? 'selected' : '' }}>Masih Ragu</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center text-gray-400">
                                 <i class="fa-solid fa-chevron-down"></i>
@@ -308,10 +317,17 @@
                     </div>
 
                     <div>
+                        <label for="plusone" class="mb-2 block text-sm font-bold text-gray-700">Jumlah Tambahan Tamu (Plus One)</label>
+                        <input type="number" id="plusone" name="plusone" min="0" required
+                            value="{{ $guest ? $guest->plusone : 0 }}"
+                            class="w-full rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white" />
+                    </div>
+
+                    <div>
                         <label for="ucapan" class="mb-2 block text-sm font-bold text-gray-700">Ucapan & Doa</label>
                         <textarea id="ucapan" name="ucapan" rows="4" required
                             placeholder="Tuliskan ucapan untuk kedua mempelai"
-                            class="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white"></textarea>
+                            class="w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 p-3 outline-none transition focus:border-primary focus:bg-white">{{ $guest ? $guest->ucapan : '' }}</textarea>
                     </div>
 
                     <button type="submit"
@@ -351,6 +367,63 @@
     <script>
         // Kirim tanggal acara dari database ke javascript
         var eventDate = new Date("{{ $settings['hari_acara'] ?? '2026-07-11' }}T00:00:00").getTime();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('guestbook-form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const submitButton = form.querySelector('button[type="submit"]');
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.innerText = 'Mengirim...';
+                    }
+
+                    const formData = new FormData(form);
+
+                    fetch('{{ route("undangan.rsvp") }}', {
+                        method: 'POST',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('guest-name').innerText = data.nama;
+                            document.getElementById('rsvp-form-view').style.display = 'none';
+                            
+                            const successView = document.getElementById('rsvp-success-view');
+                            if (successView) {
+                                successView.classList.remove('hidden');
+                                successView.classList.add('flex');
+                            }
+                        } else {
+                            alert('Terjadi kesalahan, silakan coba lagi.');
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.innerText = 'Kirim Ucapan';
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Terjadi kesalahan koneksi, silakan coba lagi.');
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.innerText = 'Kirim Ucapan';
+                        }
+                    });
+                });
+            }
+        });
     </script>
     <script src="{{ asset('main.js') }}"></script>
 </body>
