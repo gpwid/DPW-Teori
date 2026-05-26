@@ -55,6 +55,7 @@
             <h2 class="text-sm md:text-base font-semibold tracking-[0.2em] text-gray-300 uppercase mb-4">
                 {{ $judul }}
             </h2>
+            <p class="mx-auto mb-6 max-w-xl text-sm leading-relaxed text-gray-200 md:text-base">{{ $settings['landing_page_subtitle'] ?? 'Semua informasi pernikahan lengkap dalam satu halaman undangan digital untuk para tamu.' }}</p>
             <h1 class="text-5xl md:text-6xl font-bold text-white mb-8">{{ explode(' ', $settings['nama_mempelai_pria'] ?? 'Gusti')[0] }} & {{ explode(' ', $settings['nama_mempelai_wanita'] ?? 'Azwa')[0] }}</h1>
 
             <div class="relative mb-12 flex w-full max-w-md justify-center">
@@ -108,8 +109,53 @@
 
     </div>
 
-    <div data-aos="fade-up" class="mx-auto mt-28 mb-12 w-full max-w-[1024px] px-4">
-        <h2 class="mb-16 text-center text-2xl font-bold text-slate-800 md:text-3xl">Kisah Cinta Kami</h2>
+    <div class="mx-auto mt-16 mb-12 w-full max-w-[1024px] px-4">
+        <div class="rounded-[2.5rem] border border-slate-200 bg-white p-8 shadow-xl">
+            <div class="mb-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div>
+                    <p class="text-xs uppercase tracking-[0.3em] text-primaryDark">Landing Page</p>
+                    <h2 class="mt-3 text-3xl font-bold text-slate-900">{{ $settings['landing_page_title'] ?? 'The Wedding Of' }}</h2>
+                    <p class="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">{{ $settings['landing_page_subtitle'] ?? 'Semua informasi pernikahan lengkap dalam satu halaman undangan digital untuk para tamu.' }}</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <a href="#kisah-cinta" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">Kisah Cinta</a>
+                    <a href="#countdown" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">Countdown</a>
+                    <a href="#acara" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">Acara</a>
+                    <a href="#lokasi" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">Lokasi</a>
+                    <a href="#galeri" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">Galeri</a>
+                    <a href="#rsvp" class="rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-primary/10">RSVP</a>
+                </div>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+                <div class="rounded-3xl bg-slate-50 p-6">
+                    <h3 class="mb-4 text-lg font-bold text-slate-800">Detail Acara</h3>
+                    <div class="space-y-4 text-slate-600">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Akad</p>
+                            <p class="mt-2 font-semibold text-slate-900">{{ $settings['tanggal_akad'] ?? "Jum'at, 11 Juli 2026" }}</p>
+                            <p>{{ $settings['waktu_akad'] ?? '08:00 - 15:00 WIB' }}</p>
+                            <p>{{ $settings['tempat_akad'] ?? 'Masjid Al-Ikhlas' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Resepsi</p>
+                            <p class="mt-2 font-semibold text-slate-900">{{ $settings['tanggal_resepsi'] ?? 'Minggu, 13 Juli 2026' }}</p>
+                            <p>{{ $settings['waktu_resepsi'] ?? '09:00 - 16:00 WIB' }}</p>
+                            <p>{{ $settings['tempat_resepsi'] ?? 'Grand Central Hotel Pekanbaru' }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-3xl bg-slate-50 p-6">
+                    <h3 class="mb-4 text-lg font-bold text-slate-800">Lokasi dan Akses</h3>
+                    <p class="text-sm leading-relaxed text-slate-600">{{ $settings['alamat_resepsi'] ?? 'Jl. Jend. Sudirman No.1, Tengkerang Utara, Kec. Bukit Raya, Kota Pekanbaru, Riau' }}</p>
+                    <a href="{{ $settings['map_link'] ?? 'https://www.google.com/maps/search/?api=1&query=Grand+Central+Hotel+Pekanbaru' }}" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-neutral-900 shadow-lg shadow-primary/20 transition hover:bg-primaryDark">Buka Google Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kisah-cinta" data-aos="fade-up" class="mx-auto mt-28 mb-12 w-full max-w-[1024px] px-4">
+        <h2 class="mb-16 text-center text-2xl font-bold text-slate-800 md:text-3xl">{{ ($settings['kisah_section_title'] ?? '') ?: 'Kisah Cinta Kami' }}</h2>
 
         <div class="relative mx-auto w-full max-w-3xl">
             <div class="absolute bottom-0 left-[24px] top-2 w-0.5 -translate-x-1/2 bg-primary/40 md:left-1/2"></div>
@@ -121,11 +167,9 @@
                     class="absolute left-[24px] top-1 z-10 flex h-5 w-5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_0_4px_rgba(220,184,166,0.3)] md:static md:top-auto md:translate-x-0">
                 </div>
                 <div class="w-full pl-16 md:order-first md:w-5/12 md:pl-0 md:pr-10 md:text-right">
-                    <h3 class="font-bold text-primaryDark md:text-lg">Pertemuan Pertama</h3>
-                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">Januari 2020</p>
-                    <p class="text-sm leading-relaxed text-slate-600">Mata saling bertatap di sebuah acara kampus yang
-                        ramai. Obrolan kecil menjadi pembuka jalan untuk saling mengenal lebih dalam dan berbagi cerita.
-                    </p>
+                    <h3 class="font-bold text-primaryDark md:text-lg">{{ ($settings['kisah_cinta_title_1'] ?? '') ?: 'Pertemuan Pertama' }}</h3>
+                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">{{ ($settings['kisah_cinta_date_1'] ?? '') ?: 'Januari 2020' }}</p>
+                    <p class="text-sm leading-relaxed text-slate-600">{{ ($settings['kisah_cinta_description_1'] ?? '') ?: 'Mata saling bertatap di sebuah acara kampus yang ramai. Obrolan kecil menjadi pembuka jalan untuk saling mengenal lebih dalam dan berbagi cerita.' }}</p>
                 </div>
             </div>
 
@@ -136,10 +180,9 @@
                     class="absolute left-[24px] top-1 z-10 flex h-5 w-5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_0_4px_rgba(220,184,166,0.3)] md:static md:top-auto md:translate-x-0">
                 </div>
                 <div class="w-full pl-16 text-left md:w-5/12 md:pl-10">
-                    <h3 class="font-bold text-primaryDark md:text-lg">Menjalin Hubungan</h3>
-                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">Februari 2021</p>
-                    <p class="text-sm leading-relaxed text-slate-600">Setelah satu tahun berbagi tawa dan air mata, kami
-                        memantapkan hari untuk merajut kasih, berjanji berjalan berdampingan menghadapi masa depan.</p>
+                    <h3 class="font-bold text-primaryDark md:text-lg">{{ ($settings['kisah_cinta_title_2'] ?? '') ?: 'Menjalin Hubungan' }}</h3>
+                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">{{ ($settings['kisah_cinta_date_2'] ?? '') ?: 'Februari 2021' }}</p>
+                    <p class="text-sm leading-relaxed text-slate-600">{{ ($settings['kisah_cinta_description_2'] ?? '') ?: 'Setelah satu tahun berbagi tawa dan air mata, kami memantapkan hari untuk merajut kasih, berjanji berjalan berdampingan menghadapi masa depan.' }}</p>
                 </div>
             </div>
 
@@ -150,16 +193,15 @@
                     class="absolute left-[24px] top-1 z-10 flex h-5 w-5 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_0_4px_rgba(220,184,166,0.3)] md:static md:top-auto md:translate-x-0">
                 </div>
                 <div class="w-full pl-16 md:order-first md:w-5/12 md:pl-0 md:pr-10 md:text-right">
-                    <h3 class="font-bold text-primaryDark md:text-lg">Lamaran</h3>
-                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">Oktober 2025</p>
-                    <p class="text-sm leading-relaxed text-slate-600">Dengan restu dari kedua keluarga tercinta, seuntai
-                        cincin tersemat sebagai tanda keseriusan dan janji suci ke jenjang pernikahan.</p>
+                    <h3 class="font-bold text-primaryDark md:text-lg">{{ ($settings['kisah_cinta_title_3'] ?? '') ?: 'Lamaran' }}</h3>
+                    <p class="mb-3 mt-1 text-sm font-medium tracking-wide text-slate-400">{{ ($settings['kisah_cinta_date_3'] ?? '') ?: 'Oktober 2025' }}</p>
+                    <p class="text-sm leading-relaxed text-slate-600">{{ ($settings['kisah_cinta_description_3'] ?? '') ?: 'Dengan restu dari kedua keluarga tercinta, seuntai cincin tersemat sebagai tanda keseriusan dan janji suci ke jenjang pernikahan.' }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div data-aos="fade-up" data-aos-easing="ease-out" data-aos-duration="1000"
+    <div id="countdown" data-aos="fade-up" data-aos-easing="ease-out" data-aos-duration="1000"
         class="mx-auto mt-20 w-full max-w-[1024px] px-4 text-center">
         <h2 class="mb-10 text-2xl font-bold text-slate-800 md:text-3xl">Menghitung Hari Bahagia</h2>
 
@@ -186,7 +228,7 @@
         </div>
     </div>
 
-    <div data-aos="fade-up" class="mx-auto mt-24 mb-16 w-full max-w-[1024px] px-4 text-center">
+    <div id="acara" data-aos="fade-up" class="mx-auto mt-24 mb-16 w-full max-w-[1024px] px-4 text-center">
         <h2 class="mb-2 text-2xl font-bold text-slate-800 md:text-3xl">Acara Pernikahan</h2>
         <p class="mx-auto mb-16 max-w-lg text-sm text-slate-500 md:text-base">
             Dengan memohon ridho Allah SWT, kami mengundang Bapak/Ibu ke acara kami
@@ -217,7 +259,7 @@
         </div>
     </div>
 
-    <div class="mx-auto mb-24 w-full max-w-[1024px] px-4 text-center">
+    <div id="lokasi" class="mx-auto mb-24 w-full max-w-[1024px] px-4 text-center">
         <div data-aos="flip-up"
             class="flex w-full flex-col items-center justify-center rounded-[2.5rem] bg-primary/20 p-6 shadow-sm md:p-12">
             <i class="fa-solid fa-location-dot mb-4 text-4xl text-primaryDark md:text-5xl"></i>
@@ -241,8 +283,11 @@
         </div>
     </div>
 
-    <div data-aos="fade-up" class="mx-auto mt-28 mb-12 w-full max-w-[1024px] px-4">
-        <h2 class="mb-12 text-center text-2xl font-bold text-slate-800 md:text-3xl">Galeri Foto</h2>
+    <div id="galeri" data-aos="fade-up" class="mx-auto mt-28 mb-12 w-full max-w-[1024px] px-4">
+        <h2 class="mb-4 text-center text-2xl font-bold text-slate-800 md:text-3xl">{{ ($settings['gallery_section_title'] ?? '') ?: 'Galeri Foto' }}</h2>
+        @if(!empty($settings['gallery_section_subtitle'] ?? null))
+            <p class="mx-auto mb-12 max-w-lg text-sm text-slate-500 md:text-base">{{ $settings['gallery_section_subtitle'] ?? '' }}</p>
+        @endif
 
         <div class="grid grid-cols-2 md:grid-cols-4 grid-flow-row-dense auto-rows-[150px] md:auto-rows-[250px] gap-4">
             @foreach($galleries as $gallery)
@@ -273,7 +318,7 @@
     </div>
 
 
-    <div class="mx-auto mt-24 mb-24 w-full max-w-[1024px] px-4">
+    <div id="rsvp" class="mx-auto mt-24 mb-24 w-full max-w-[1024px] px-4">
         <div data-aos="zoom-out-up"
             class="mx-auto w-full max-w-lg rounded-[2.5rem] border-4 border-primary/30 bg-white p-8 shadow-2xl md:p-12">
 

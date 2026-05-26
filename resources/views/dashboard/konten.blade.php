@@ -83,6 +83,37 @@
                     class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
             </div>
 
+            <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 mb-4">
+                <h3 class="mb-4 text-lg font-bold text-slate-800">Landing Page</h3>
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Halaman Utama</label>
+                        <input type="text" name="landing_page_title" value="{{ $settings['landing_page_title'] ?? 'The Wedding Of' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Subjudul Halaman</label>
+                        <input type="text" name="landing_page_subtitle" value="{{ $settings['landing_page_subtitle'] ?? 'Semua informasi pernikahan dalam satu halaman.' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div class="lg:col-span-2">
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Seksi Kisah Cinta</label>
+                        <input type="text" name="kisah_section_title" value="{{ $settings['kisah_section_title'] ?? 'Kisah Cinta Kami' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div class="lg:col-span-2">
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Seksi Galeri</label>
+                        <input type="text" name="gallery_section_title" value="{{ $settings['gallery_section_title'] ?? 'Galeri Foto' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div class="lg:col-span-2">
+                        <label class="mb-1.5 block font-bold text-slate-700">Subjudul Galeri</label>
+                        <input type="text" name="gallery_section_subtitle" value="{{ $settings['gallery_section_subtitle'] ?? '' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <label class="mb-1.5 block font-bold text-slate-700">Foto Mempelai Wanita</label>
                 <div
@@ -149,6 +180,76 @@
                         </label>
                         <input type="file" id="foto_cover_input" name="foto_cover" accept="image/*" class="hidden"
                             onchange="previewImage(this, 'preview_foto_cover', 'placeholder_foto_cover')" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 mb-4">
+                <h3 class="mb-4 text-lg font-bold text-slate-800">Kisah Cinta Kami</h3>
+                <div class="grid gap-4 lg:grid-cols-3">
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Bagian 1</label>
+                        <input type="text" name="kisah_cinta_title_1" value="{{ $settings['kisah_cinta_title_1'] ?? 'Pertemuan Pertama' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Tanggal Bagian 1</label>
+                        <input type="text" name="kisah_cinta_date_1" value="{{ $settings['kisah_cinta_date_1'] ?? 'Januari 2020' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Deskripsi Bagian 1</label>
+                        <textarea name="kisah_cinta_description_1" rows="3" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">{{ $settings['kisah_cinta_description_1'] ?? 'Mata saling bertatap di sebuah acara kampus yang ramai. Obrolan kecil menjadi pembuka jalan untuk saling mengenal lebih dalam dan berbagi cerita.' }}</textarea>
+                    </div>
+                </div>
+
+                <div class="grid gap-4 lg:grid-cols-3 mt-4">
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Bagian 2</label>
+                        <input type="text" name="kisah_cinta_title_2" value="{{ $settings['kisah_cinta_title_2'] ?? 'Menjalin Hubungan' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Tanggal Bagian 2</label>
+                        <input type="text" name="kisah_cinta_date_2" value="{{ $settings['kisah_cinta_date_2'] ?? 'Februari 2021' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Deskripsi Bagian 2</label>
+                        <textarea name="kisah_cinta_description_2" rows="3" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">{{ $settings['kisah_cinta_description_2'] ?? 'Setelah satu tahun berbagi tawa dan air mata, kami memantapkan hari untuk merajut kasih, berjanji berjalan berdampingan menghadapi masa depan.' }}</textarea>
+                    </div>
+                </div>
+
+                <div class="grid gap-4 lg:grid-cols-3 mt-4">
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Bagian 3</label>
+                        <input type="text" name="kisah_cinta_title_3" value="{{ $settings['kisah_cinta_title_3'] ?? 'Lamaran' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Tanggal Bagian 3</label>
+                        <input type="text" name="kisah_cinta_date_3" value="{{ $settings['kisah_cinta_date_3'] ?? 'Oktober 2025' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Deskripsi Bagian 3</label>
+                        <textarea name="kisah_cinta_description_3" rows="3" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20">{{ $settings['kisah_cinta_description_3'] ?? 'Dengan restu dari kedua keluarga tercinta, seuntai cincin tersemat sebagai tanda keseriusan dan janji suci ke jenjang pernikahan.' }}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-2xl bg-slate-50 border border-slate-200 p-5 mb-4">
+                <h3 class="mb-4 text-lg font-bold text-slate-800">Galeri Foto</h3>
+                <div class="grid gap-4 lg:grid-cols-2">
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Judul Seksi Galeri</label>
+                        <input type="text" name="gallery_section_title" value="{{ $settings['gallery_section_title'] ?? 'Galeri Foto' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block font-bold text-slate-700">Subjudul Galeri</label>
+                        <input type="text" name="gallery_section_subtitle" value="{{ $settings['gallery_section_subtitle'] ?? '' }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-slate-800 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20" />
                     </div>
                 </div>
             </div>

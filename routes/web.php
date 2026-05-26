@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SettingController;
 
 Route::get('/', [InvitationController::class, 'index'])->name('undangan.index');
+Route::get('/landing', [InvitationController::class, 'index'])->name('landing');
 Route::post('/rsvp', [InvitationController::class, 'rsvp'])->name('undangan.rsvp');
 
 Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');
@@ -18,6 +19,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     
     Route::get('/dashboard/guests/export', [GuestController::class, 'exportCsv'])->name('guests.export');
+    Route::get('/dashboard/guests/export-pdf', [GuestController::class, 'exportPdf'])->name('guests.export_pdf');
     Route::resource('dashboard/guests', GuestController::class)->except(['create', 'show', 'edit']);
     Route::resource('dashboard/galleries', GalleryController::class)->except(['create', 'show', 'edit']);
     

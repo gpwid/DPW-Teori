@@ -19,6 +19,10 @@
                     class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 inline-flex items-center gap-1.5">
                     <i class="fa-solid fa-file-csv text-[#dcb8a6]"></i> Export CSV
                 </a>
+                <a href="{{ route('guests.export_pdf') }}"
+                    class="rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-pdf text-[#dcb8a6]"></i> Export PDF
+                </a>
                 <button type="button" onclick="openAddModal()"
                     class="rounded-xl border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-bold text-[#c79782] hover:bg-primary/20 transition-colors">
                     Tambah Tamu
