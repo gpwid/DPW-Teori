@@ -18,6 +18,7 @@ Route::middleware('admin.auth')->group(function () {
     Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     
     Route::get('/dashboard/guests/export', [GuestController::class, 'exportCsv'])->name('guests.export');
+    Route::get('/dashboard/guests/export-pdf', [GuestController::class, 'exportPdf'])->name('guests.export_pdf');
     Route::resource('dashboard/guests', GuestController::class)->except(['create', 'show', 'edit']);
     Route::resource('dashboard/galleries', GalleryController::class)->except(['create', 'show', 'edit']);
     
