@@ -8,6 +8,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SettingController;
 
 Route::get('/', [InvitationController::class, 'index'])->name('undangan.index');
+Route::get('/landing', [InvitationController::class, 'index'])->name('landing');
 Route::post('/rsvp', [InvitationController::class, 'rsvp'])->name('undangan.rsvp');
 
 Route::get('/login', [AdminController::class, 'showLogin'])->name('admin.login');

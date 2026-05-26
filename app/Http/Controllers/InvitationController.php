@@ -15,7 +15,7 @@ class InvitationController extends Controller
         $settings = Setting::pluck('value', 'key')->toArray();
         $galleries = Gallery::orderBy('id', 'asc')->get();
 
-        $judul = "The Wedding Of";
+        $judul = $settings['landing_page_title'] ?? "The Wedding Of";
         $nama_tamu = "[Nama Tamu]";
         $guest = null;
         
